@@ -11,7 +11,7 @@ setTimeout(() => {
   }, 10);
 }, 10);
 
-// 解题：生命一个promise 对象，然后.then()链式调用，依次把回调函数的结果传递给下一个promise对象
+// 解题：声明一个promise 对象，然后.then()链式调用，依次把回调函数的结果传递给下一个promise对象
 let promise = new Promise((resolve, reject) => {
   var a = 'hello'
   return a

@@ -31,23 +31,23 @@ const cars = [
     return fp.prop('in_stock', last_car)
   }
 */
-// const isLastInStock = cars => fp.last(cars)
-// const getProp = last_car => fp.prop('in_stock', last_car)
-// const value = fp.flowRight(getProp ,isLastInStock)
-// console.log(value(cars)) // false
+const isLastInStock = cars => fp.last(cars)
+const getProp = last_car => fp.prop('in_stock', last_car)
+const value = fp.flowRight(getProp ,isLastInStock)
+console.log(value(cars)) // false
 
 // 2、使用fp.flowRight()、fp.prop()、fp.first()获取第一个car的name
 
-// const getFirstData = cars => fp.first(cars)
-// const getName = first_car => fp.prop('name', first_car)
-// const firstValue = fp.flowRight(getName ,getFirstData)
-// console.log(firstValue(cars)) // Ferrari FF
+const getFirstData = cars => fp.first(cars)
+const getName = first_car => fp.prop('name', first_car)
+const firstValue = fp.flowRight(getName ,getFirstData)
+console.log(firstValue(cars)) // Ferrari FF
 
 
 // 3、使用帮助函数_average重构averageDollarValue，使用函数组合的方式实现
-// let _average = function (xs) {
-//   return fp.reduce(fp.add, 0, xs) / xs.length
-// } // 无须改动
+let _average = function (xs) {
+  return fp.reduce(fp.add, 0, xs) / xs.length
+} // 无须改动
 
 // // 待改造代码
 // /*
@@ -59,9 +59,9 @@ const cars = [
 // }
 // */
 // // 改造之后代码
-// let averageDollarValue = cars => fp.map((car) => { return car.dollar_value } , cars )
-// let average = fp.flowRight(_average, averageDollarValue)
-// console.log(average(cars)) // 790700
+let averageDollarValue = cars => fp.map((car) => { return car.dollar_value } , cars )
+let average = fp.flowRight(_average, averageDollarValue)
+console.log(average(cars)) // 790700
 
 
 // 4、使用flowRight 写一个sanitizeNames()函数，返回一个下划线连接的小写字符串，把数组中的name
@@ -72,5 +72,4 @@ let _underscore = fp.replace(/\W+/g, '_') // 无须改动，并在sanitizeNames�
 let lowerCase = str => fp.lowerCase(str)
 let longstr = arr => arr.join(',')
 let sanitizeNames = fp.flowRight(fp.split(','),_underscore, lowerCase,longstr)
-// let sanitizeNames = arr => fp.map(val => { return _underscore(fp.lowerCase(val))},arr)
 console.log(sanitizeNames(["Hello World"]))
